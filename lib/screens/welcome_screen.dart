@@ -9,24 +9,26 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
- 
+  late Animation animation;
+
   @override
   void initState() {
     super.initState();
     controller = AnimationController(
       duration: Duration(
-        seconds: 1, 
-      ), 
+        seconds: 1,
+      ),
       vsync: this,
-      upperBound: 100.0, 
-    ); 
+      upperBound: 1.0,
+    );
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    controller.reverse(from: 1.0);
     controller.forward();
-    controller.addListener(() { 
-      setState(() {
-        
-      });
+    controller.addListener(() {
+      setState(() {});
       print(controller.value);
     });
   }
@@ -34,7 +36,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, 
+      backgroundColor: Colors.red.withOpacity(controller.value.toDouble()),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -47,12 +49,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: controller.value,
+                    height: controller.value * 100,
                   ),
                 ),
                 Text(
                   // '${controller.value.toInt()}%',
-                  "Flash Chat", 
+                  "Flash Chat",
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 35.0,
@@ -60,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   ),
                 ),
               ],
-            ), 
+            ),
             SizedBox(
               height: 48.0,
             ),
