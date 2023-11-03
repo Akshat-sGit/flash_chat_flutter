@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-
   static String id = 'login_screen';
 
   @override
@@ -30,11 +29,15 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
+              style: TextStyle(
+                color: Colors.black, 
+              ),
               onChanged: (value) {
                 //Do something with the user input.
               },
               decoration: InputDecoration(
                 hintText: 'Enter your email',
+                hintStyle: TextStyle(color: Colors.black26),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
@@ -56,11 +59,16 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 8.0,
             ),
             TextField(
+              style: TextStyle(
+                color: Colors.black,
+              ),
               onChanged: (value) {
                 //Do something with the user input.
+                print(value); 
               },
               decoration: InputDecoration(
-                hintText: 'Enter your password.',
+                hintText: 'Enter your password',
+                hintStyle: TextStyle(color: Colors.black26),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                 border: OutlineInputBorder(
